@@ -16,7 +16,7 @@ Mirai环境 以及 Dice核心 由 [@w4123](https://github.com/w4123) 溯洄制�
 
 下载脚本
 
-`wget https://www.aobacore.com/Git/Mirai-Dice/MiraiDice.sh`
+`wget -N --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/MiraiDice.sh"`
 
 运行脚本
 
