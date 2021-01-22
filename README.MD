@@ -44,6 +44,8 @@ Mirai环境 以及 Dice核心 由 [@w4123](https://github.com/w4123) 溯洄制�
 
 由于这种部署方式没有可视化界面，所以强烈建议先在本地部署，然后将`device.json`和`DiceQQ号`目录一起上传到`/usr/local/MiraiDice/`
 
+如果安装时出现无法连接Github的情况，请自行在`/etc/hosts`添加一行`199.232.4.133 raw.githubusercontent.com`
+
 另外可能会出现Openjdk安装失败的情况，请先更新安装源`apt-get update`
 
 ## 感谢
