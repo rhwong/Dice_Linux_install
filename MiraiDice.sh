@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Mirai with Dice Quick install
-#	Version: v1.0.0
+#	Version: v1.0.1
 #	Author: Linux Dice by w4123,bash by rhwong
 # Thanks: Part of This script copied from Toyo 
 #=================================================
 
-sh_ver="1.0.0"
+sh_ver="1.0.1"
 file="/usr/local/MiraiDice"
 config_file="${file}/config/Console/AutoLogin.yml"
 device_file="${file}/device.json"
@@ -100,14 +100,14 @@ Download_Dice() {
 # 下载管理脚本
 Service_Mirai_Dice_bash() {
   if [[ ${release} == "centos" ]]; then
-    if ! wget --no-check-certificate "https://www.aobacore.com/Git/Mirai-Dice/Mirai-Dice-Service_CentOS" -O /etc/init.d/Mirai-Dice; then
+    if ! wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/Service/Mirai-Dice-Service_CentOS" -O /etc/init.d/Mirai-Dice; then
       echo -e "${Error} Mirai-Dice 管理脚本下载失败 !" && exit 1
     fi
     chmod +x /etc/init.d/Mirai-Dice
     chkconfig --add Mirai-Dice
     chkconfig Mirai-Dice on
   else
-    if ! wget --no-check-certificate "https://www.aobacore.com/Git/Mirai-Dice/Mirai-Dice-Service_Ubuntu" -O /etc/init.d/Mirai-Dice; then
+    if ! wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/Service/Mirai-Dice-Service_Ubuntu" -O /etc/init.d/Mirai-Dice; then
       echo -e "${Error} Mirai-Dice 管理脚本下载失败 !" && exit 1
     fi
     chmod +x /etc/init.d/Mirai-Dice
@@ -119,13 +119,13 @@ Service_Mirai_Dice_bash() {
 # 升级脚本
 Update_Shell() {
   chmod +x MiraiDice.sh
-  sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://www.aobacore.com/Git/Mirai-Dice/MiraiDice.sh" | grep 'sh_ver="' | awk -F "=" '{print $NF}' | sed 's/\"//g' | head -1)
+  sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/MiraiDice.sh" | grep 'sh_ver="' | awk -F "=" '{print $NF}' | sed 's/\"//g' | head -1)
   [[ -z ${sh_new_ver} ]] && echo -e "${Error} 无法链接到 下载源 !" && exit 0
   if [[ -e "/etc/init.d/Mirai-Dice" ]]; then
     rm -rf /etc/init.d/Mirai-Dice
     Service_Mirai_Dice_bash
   fi
-  wget -N --no-check-certificate "https://www.aobacore.com/Git/Mirai-Dice/MiraiDice.sh" -O /root/MiraiDice.sh;
+  wget -N --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/MiraiDice.sh" -O /root/MiraiDice.sh;
   chmod +x MiraiDice.sh
   echo -e "脚本已更新为最新版本[ ${sh_new_ver} ] !(注意：因为更新方式为直接覆盖当前运行的脚本，所以可能下面会提示一些报错，无视即可)" && exit 0
 }
