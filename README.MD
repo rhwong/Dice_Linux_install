@@ -1,4 +1,4 @@
-﻿# Dice Linux install
+# Dice Linux install
 
 [Dice](https://github.com/Dice-Developer-Team/Dice) For Linux 快速安装脚本
 
@@ -6,7 +6,7 @@
 
 本脚本用于在 **CentOS/Debian/Ubuntu** 系统环境下快速部署[Mirai](https://github.com/project-mirai) with [Dice](https://github.com/Dice-Developer-Team)一键包 *(暂时只测试了Ubuntu)*
 
-Mirai环境 以及 Dice核心 由 @w4123 溯洄制作和打包
+Mirai环境 以及 Dice核心 由 [@w4123](https://github.com/w4123) 溯洄制作和打包
 
 本人仅在打包时为了适配脚本进行了一些文件的增加和修改
 
@@ -43,3 +43,17 @@ Mirai环境 以及 Dice核心 由 @w4123 溯洄制作和打包
 如果有多个bot请注意修改`/etc/init.d/Mirai-Dice`文件中的`Start`和`Stop`部分
 
 由于这种部署方式没有可视化界面，所以强烈建议先在本地部署，然后将`device.json`和`DiceQQ号`目录一起上传到`/usr/local/MiraiDice/`
+
+## 感谢
+
+我就是个笨狐，啥都不会，脚本是照着Toyo/doubi抄的
+
+安装包是由 [@w4123](https://github.com/w4123) 溯洄洄制作的，不是我做的
+
+感谢以下项目的大佬们
+
+Mirai https://github.com/project-mirai
+
+Dice https://github.com/Dice-Developer-Team/Dice
+
+doubi https://github.com/ToyoDAdoubiBackup/doubi
