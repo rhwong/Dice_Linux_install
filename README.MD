@@ -4,7 +4,7 @@
 
 ## 简介
 
-本脚本用于在 **CentOS/Debian/Ubuntu** 系统环境下快速部署[Mirai](https://github.com/project-mirai) with [Dice](https://github.com/Dice-Developer-Team)一键包 *(暂时只测试了Ubuntu)*
+本脚本用于在 **CentOS/Debian/Ubuntu** 系统环境下快速部署[Mirai](https://github.com/project-mirai) with [Dice](https://github.com/Dice-Developer-Team)一键包 *(暂时只测试了CentOs/Ubuntu)*
 
 Mirai环境 以及 Dice核心 由 [@w4123](https://github.com/w4123) 溯洄制作和打包
 
