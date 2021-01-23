@@ -13,10 +13,10 @@
 NAME="Mirai-Dice-B"
 NAME_BIN="mcl-b.jar"
 Info_font_prefix="\033[32m" && Error_font_prefix="\033[31m" && Font_suffix="\033[0m"
-if [[ -e "/usr/local/MiraiDice/mcl-b.jar" ]]; then
-	BIN="/usr/local/MiraiDice/mcl-b.jar"
-elif [[ -e "/usr/local/MiraiDice/mcl-b.jar" ]]; then
-	BIN="/usr/local/MiraiDice/mcl-b.jar"
+if [[ -e "/usr/local/MiraiDice2/mcl-b.jar" ]]; then
+	BIN="/usr/local/MiraiDice2/mcl-b.jar"
+elif [[ -e "/usr/local/MiraiDice2/mcl-b.jar" ]]; then
+	BIN="/usr/local/MiraiDice2/mcl-b.jar"
 else
 	echo -e "${Error_font_prefix}[错误]${Font_suffix} 核心文件($NAME_BIN)找不到 !" && exit 1
 fi
