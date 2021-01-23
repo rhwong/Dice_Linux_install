@@ -46,7 +46,7 @@ check_sys() {
 # 检测PID
 check_pid() {
   #PID=$(ps -ef | grep "mcl.jar" | grep -v grep | grep -v ".sh" | grep -v "init.d" | grep -v "service" | awk '{print $2}')
-  PID=$(pgrep -f "mcl.jar")
+  PID=$(pgrep -f "mcl-b.jar")
 }
 
 # 安装Openjdk
@@ -100,14 +100,14 @@ Download_Dice() {
 # 下载管理脚本
 Service_Mirai_Dice_bash() {
   if [[ ${release} == "centos" ]]; then
-    if ! wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/Service/Mirai-Dice-B-Service_CentOS" -O /etc/init.d/Mirai-Dice-B; then
+    if ! wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/Service/Mirai-Dice-Service_CentOS_B" -O /etc/init.d/Mirai-Dice-B; then
       echo -e "${Error} Mirai-Dice 分身管理脚本下载失败 !" && exit 1
     fi
     chmod +x /etc/init.d/Mirai-Dice-B
     chkconfig --add Mirai-Dice-B
     chkconfig Mirai-Dice-B on
   else
-    if ! wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/Service/Mirai-Dice-B-Service_Ubuntu" -O /etc/init.d/Mirai-Dice-B; then
+    if ! wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/Service/Mirai-Dice-Service_Ubuntu_B" -O /etc/init.d/Mirai-Dice-B; then
       echo -e "${Error} Mirai-Dice 分身管理脚本下载失败 !" && exit 1
     fi
     chmod +x /etc/init.d/Mirai-Dice-B
