@@ -239,7 +239,7 @@ Stop_Mirai-Dice_Service() {
 # 重启Linux Dice
 Restart_Mirai-Dice_Service() {
   check_pid
-  [[ -n ${PID} ]] && /etc/init.d/Mirai-Dice stop
+  [[ -n ${PID} ]] && /etc/init.d/Mirai-Dice-B stop
   /etc/init.d/Mirai-Dice-B start
 }
 
