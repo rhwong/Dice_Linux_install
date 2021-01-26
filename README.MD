@@ -38,9 +38,11 @@ Mirai 环境 以及 Dice 核心 由 [@w4123](https://github.com/w4123) 溯洄制
 
 ## 说明
 
-本脚本旨在快速在 Linux 环境下部署 Dice，但并没有考虑到同时部署多个 bot 的需求
+~~本脚本旨在快速在 Linux 环境下部署 Dice，但并没有考虑到同时部署多个 bot 的需求~~
 
-如果有多个 bot 请注意修改`/etc/init.d/Mirai-Dice`文件中的`Start`和`Stop`部分
+~~如果有多个 bot 请注意修改`/etc/init.d/Mirai-Dice`文件中的`Start`和`Stop`部分~~
+
+分身版已经做好了，照着和原版的差异改分身C、D、E、F...就可以了
 
 由于这种部署方式没有可视化界面，所以强烈建议先在本地部署，然后将`mirai/device.json`和`mirai/DiceQQ号`以及`mirai/config`目录一起上传到`/usr/local/MiraiDice/`
 
