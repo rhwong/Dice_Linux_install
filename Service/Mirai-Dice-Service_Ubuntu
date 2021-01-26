@@ -61,7 +61,7 @@ do_startauto(){
 	echo -e "${Info_font_prefix}[信息]${Font_suffix} 守护进程 (PID ${PID}) 正在运行..." && exit 0
 	else
 		ulimit -n 51200 >/dev/null 2>&1
-      nohup /usr/local/MiraiDice/RestartService.sh 
+      nohup /usr/local/MiraiDice/RestartService.sh >/dev/null 2>&1 &
 		sleep 2s
 		if check_running_Autorestart; then
 			echo -e "${Info_font_prefix}[信息]${Font_suffix} 守护进程 启动成功 !"
