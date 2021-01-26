@@ -114,7 +114,7 @@ do_restartauto(){
 	do_startauto
 }
 case "$1" in
-	start|stop|restart|status)
+	start|stop|restart|status|startauto|stopauto|restartauto)
 	do_"$1"
 	;;
 	*)

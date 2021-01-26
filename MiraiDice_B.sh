@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Mirai with Dice Quick install
-#	Version: v1.0.4
+#	Version: v1.0.5
 #	Author: Linux Dice by w4123,bash by rhwong
 # Thanks: Part of This script copied from Toyo 
 #=================================================
 
-sh_ver="1.0.4"
+sh_ver="1.0.5"
 file="/usr/local/MiraiDice2"
 config_file="${file}/config/Console/AutoLogin.yml"
 device_file="${file}/device.json"

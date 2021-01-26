@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Mirai with Dice Quick install
-#	Version: v1.0.4
+#	Version: v1.0.5
 #	Author: Linux Dice by w4123,bash by rhwong
 # Thanks: Part of This script copied from Toyo 
 #=================================================
 
-sh_ver="1.0.4"
+sh_ver="1.0.5"
 file="/usr/local/MiraiDice"
 config_file="${file}/config/Console/AutoLogin.yml"
 device_file="${file}/device.json"
@@ -123,13 +123,6 @@ Service_Mirai_Dice_bash() {
 
 # 下载进程守护脚本
 Service_Mirai_AutoRestart() {
-  if [[ -e ${file}/RestartService.sh ]]; then
-    echo && echo -e "${Error_font_prefix}[信息]${Font_suffix} 检测到 进程守护脚本 已存在，是否继续(覆盖安装)？[y/N]"
-    read -rep "(默认: n):" yn
-    [[ -z ${yn} ]] && yn="n"
-    if [[ ${yn} == [Nn] ]]; then
-      echo && echo "已取消..." && exit 1
-    fi
     check_autorestart_pid
     [[ -n ${A_PID} ]] && kill -9 ${A_PID}
     wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService.sh" -O ${file}/RestartService.sh; 
