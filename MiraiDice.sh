@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Mirai with Dice Quick install
-#	Version: v1.0.1
+#	Version: v1.0.4
 #	Author: Linux Dice by w4123,bash by rhwong
 # Thanks: Part of This script copied from Toyo 
 #=================================================
 
-sh_ver="1.0.1"
+sh_ver="1.0.4"
 file="/usr/local/MiraiDice"
 config_file="${file}/config/Console/AutoLogin.yml"
 device_file="${file}/device.json"
@@ -47,6 +47,11 @@ check_sys() {
 check_pid() {
   #PID=$(ps -ef | grep "mcl.jar" | grep -v grep | grep -v ".sh" | grep -v "init.d" | grep -v "service" | awk '{print $2}')
   PID=$(pgrep -f "mcl.jar")
+}
+
+# 检测守护脚本PID
+check_autorestart_pid() {
+  A_PID=$(pgrep -f "RestartService.sh")
 }
 
 # 安装Openjdk
@@ -114,6 +119,23 @@ Service_Mirai_Dice_bash() {
     update-rc.d -f Mirai-Dice defaults
   fi
   echo -e "${Info} Mirai-Dice 管理脚本下载完成 !"
+}
+
+# 下载进程守护脚本
+Service_Mirai_AutoRestart() {
+  if [[ -e ${file}/RestartService.sh ]]; then
+    echo && echo -e "${Error_font_prefix}[信息]${Font_suffix} 检测到 进程守护脚本 已存在，是否继续(覆盖安装)？[y/N]"
+    read -rep "(默认: n):" yn
+    [[ -z ${yn} ]] && yn="n"
+    if [[ ${yn} == [Nn] ]]; then
+      echo && echo "已取消..." && exit 1
+    fi
+    check_autorestart_pid
+    [[ -n ${A_PID} ]] && kill -9 ${A_PID}
+    wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService.sh" -O ${file}/RestartService.sh; 
+    chmod +x ${file}/RestartService.sh
+    echo -e "${Info} Mirai-Dice 管理脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能出现不可预料的错误。)"
+  fi
 }
 
 # 升级脚本
@@ -243,6 +265,27 @@ Restart_Mirai-Dice_Service() {
   /etc/init.d/Mirai-Dice start
 }
 
+# 启动进程守护
+Start_Mirai_AutoRestart() {
+  check_autorestart_pid
+  [[ -n ${A_PID} ]] && echo -e "${Error} 进程守护 正在运行，请检查 !" && exit 1
+  /etc/init.d/Mirai-Dice startauto
+}
+
+# 关闭进程守护
+Stop_Mirai_AutoRestart() {
+  check_autorestart_pid
+  [[ -z ${A_PID} ]] && echo -e "${Error} 进程守护 没有运行，请检查 !" && exit 1
+  /etc/init.d/Mirai-Dice stopauto
+}
+
+# 重启进程守护
+Restart_Mirai_AutoRestart() {
+  check_autorestart_pid
+  [[ -n ${A_PID} ]] && /etc/init.d/Mirai-Dice stopauto
+  /etc/init.d/Mirai-Dice startauto
+}
+
 
 # 安装Linux Dice
 install_Dice() {
@@ -295,13 +338,17 @@ else
  ${Green_font_prefix} 0.${Font_color_suffix} 升级脚本
  ————————————
  ${Green_font_prefix} 1.${Font_color_suffix} 安装 Dice
- ${Green_font_prefix} 2.${Font_color_suffix} 更新 Dice 内核
+ ${Green_font_prefix} 2.${Font_color_suffix} 安装 守护
 ————————————
  ${Green_font_prefix} 3.${Font_color_suffix} 启动 Dice
  ${Green_font_prefix} 4.${Font_color_suffix} 停止 Dice
  ${Green_font_prefix} 5.${Font_color_suffix} 重启 Dice
 ————————————
- ${Green_font_prefix} 6.${Font_color_suffix} 设置 登录信息
+ ${Green_font_prefix} 6.${Font_color_suffix} 启动 守护
+ ${Green_font_prefix} 7.${Font_color_suffix} 关闭 守护
+ ${Green_font_prefix} 8.${Font_color_suffix} 重启 守护
+————————————
+ ${Green_font_prefix} 9.${Font_color_suffix} 设置 登录信息
  "
 	menu_status
 	echo && read -e -p "请输入数字 [0-6]：" num
@@ -313,7 +360,7 @@ case "$num" in
     install_Dice
     ;;
   2)
-    Update_Dice_Core
+    Service_Mirai_AutoRestart
     ;;
   3)
     Start_Mirai-Dice_Service
@@ -325,6 +372,15 @@ case "$num" in
     Restart_Mirai-Dice_Service
     ;;
   6)
+    Start_Mirai_AutoRestart
+    ;;
+  7)
+    Stop_Mirai_AutoRestart
+    ;;
+  8)
+    Restart_Mirai_AutoRestart
+    ;;
+  9)
     Reset_QQ_config
     ;;
   *)
