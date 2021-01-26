@@ -123,11 +123,20 @@ Service_Mirai_Dice_bash() {
 
 # 下载进程守护脚本
 Service_Mirai_AutoRestart() {
+  if [[ -e ${file}/RestartService.sh ]]; then
+    echo && echo -e "${Error_font_prefix}[信息]${Font_suffix} 检测到 进程守护脚本 已存在，是否继续(覆盖安装)？[y/N]"
+    read -rep "(默认: n):" yn
+    [[ -z ${yn} ]] && yn="n"
+    if [[ ${yn} == [Nn] ]]; then
+      echo && echo "已取消..." && exit 1
+    fi
     check_autorestart_pid
     [[ -n ${A_PID} ]] && kill -9 ${A_PID}
     wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService.sh" -O ${file}/RestartService.sh; 
     chmod +x ${file}/RestartService.sh
     echo -e "${Info} Mirai-Dice 管理脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能出现不可预料的错误。)"
+  fi
+}
 }
 
 # 升级脚本
