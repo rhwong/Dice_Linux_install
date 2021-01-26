@@ -32,9 +32,9 @@ Mirai 环境 以及 Dice 核心 由 [@w4123](https://github.com/w4123) 溯洄制
 
 1.  `cd /usr/local/MiraiDice`
 
-`LaunchMirai.sh`
+​        `bash LaunchMirai.sh`
 
-然后[手动完成滑块认证](https://github.com/project-mirai/mirai-login-solver-selenium#%E6%89%8B%E5%8A%A8%E5%AE%8C%E6%88%90%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81)，之后即可正常登录。
+​       然后[手动完成滑块认证](https://github.com/project-mirai/mirai-login-solver-selenium#%E6%89%8B%E5%8A%A8%E5%AE%8C%E6%88%90%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81)，之后即可正常登录。
 
 2. 本地电脑预先使用 Mirai 进行登录认证，在 Linux 部署 Mirai 完成后，将设备信息文件`/Mirai/device.json`覆盖上传到`/usr/local/MiraiDice/device.json`，之后即可在 Linux 上正常登录。
 
