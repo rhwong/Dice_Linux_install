@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Mirai with Dice Quick install
-#	Version: v1.0.5
+#	Version: v1.0.6
 #	Author: Linux Dice by w4123,bash by rhwong
 # Thanks: Part of This script copied from Toyo 
 #=================================================
 
-sh_ver="1.0.5"
+sh_ver="1.0.6"
 file="/usr/local/MiraiDice"
 config_file="${file}/config/Console/AutoLogin.yml"
 device_file="${file}/device.json"
@@ -138,7 +138,7 @@ Service_Mirai_AutoRestart() {
   fi
     wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService.sh" -O ${file}/RestartService.sh; 
     chmod +x ${file}/RestartService.sh
-    echo -e "${Info} Mirai-Dice 管理脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能出现不可预料的错误。)"
+    echo -e "${Info} Mirai-Dice 管理脚本下载完成 !"
 }
 
 # 升级脚本
@@ -307,6 +307,7 @@ install_Dice() {
   # 调用下载
   Download_Dice
   Service_Mirai_Dice_bash
+  Service_Mirai_AutoRestart
   # 配置账号
   Reset_QQ_config
   echo && echo -e " ${Info_font_prefix}[信息]${Font_suffix} Dice 安装完成！请自行将device.json上传到/usr/local/MiraiDice才可免验证登录！" && echo
