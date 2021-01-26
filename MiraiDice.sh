@@ -137,7 +137,6 @@ Service_Mirai_AutoRestart() {
     echo -e "${Info} Mirai-Dice 管理脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能出现不可预料的错误。)"
   fi
 }
-}
 
 # 升级脚本
 Update_Shell() {
