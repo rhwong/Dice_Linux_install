@@ -30,9 +30,9 @@ Mirai 环境 以及 Dice 核心 由 [@w4123](https://github.com/w4123) 溯洄制
 
 这种情况有两种解决办法：
 
-1.  `cd /usr/local/MiraiDice` ->  `bash LaunchMirai.sh` 然后[手动完成滑块认证](https://github.com/project-mirai/mirai-login-solver-selenium#%E6%89%8B%E5%8A%A8%E5%AE%8C%E6%88%90%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81)，之后即可正常登录。
+1.  `cd /usr/local/MiraiDice` -> `bash LaunchMirai.sh` 然后[手动完成滑块认证](https://github.com/project-mirai/mirai-login-solver-selenium#%E6%89%8B%E5%8A%A8%E5%AE%8C%E6%88%90%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81)，之后即可正常登录。
 
-2. 本地电脑预先使用 Mirai 进行登录认证，在 Linux 部署 Mirai 完成后，将设备信息文件`/Mirai/device.json`覆盖上传到`/usr/local/MiraiDice/device.json`，之后即可在 Linux 上正常登录。
+2.  本地电脑预先使用 Mirai 进行登录认证，在 Linux 部署 Mirai 完成后，将设备信息文件`/Mirai/device.json`覆盖上传到`/usr/local/MiraiDice/device.json`，之后即可在 Linux 上正常登录。
 
 如果是从 Windows 迁移到 Linux 服务器上，建议使用方法 2，直接将本地`device.json`上传到服务器即可。
 
@@ -42,7 +42,7 @@ Mirai 环境 以及 Dice 核心 由 [@w4123](https://github.com/w4123) 溯洄制
 
 ~~如果有多个 bot 请注意修改`/etc/init.d/Mirai-Dice`文件中的`Start`和`Stop`部分~~
 
-分身版已经做好了，照着和原版的差异改分身C、D、E、F...就可以了
+分身版已经做好了，照着和原版的差异改分身 C、D、E、F...就可以了
 
 由于这种部署方式没有可视化界面，所以强烈建议先在本地部署，然后将`mirai/device.json`和`mirai/DiceQQ号`以及`mirai/config`目录一起上传到`/usr/local/MiraiDice/`
 
@@ -55,6 +55,18 @@ Mirai 环境 以及 Dice 核心 由 [@w4123](https://github.com/w4123) 溯洄制
 2. 出现 Openjdk 安装失败的情况，请先更新安装源`apt-get update`，然后`apt-get install openjdk-11-jre-headless`
 
 ## 更新说明
+
+#### Ver 1.0.7
+
+**增加进程守护功能**基本正确运行
+
+#### Ver 1.0.6
+
+debug
+
+#### Ver 1.0.5
+
+修正了进程守护无法读取对应目录的问题
 
 #### Ver 1.0.4
 
