@@ -150,7 +150,6 @@ Service_Mirai_AutoRestart() {
     chmod +x ${AutoShell_file}
     echo -e "${Info} Mirai-Dice 守护脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能被强行停止。)"
   fi
-
 }
 
 # 升级脚本
