@@ -124,12 +124,13 @@ Service_Mirai_Dice_bash() {
 
 # 创建log目录
 mkdir_Mirai_log_File() {
-   if [[ -e ${AutoShell_file} ]]; then
-   echo ${Info} Log目录已存在，跳过创建
-   fi
+  if [[ -e ${log_file} ]]; then
+   echo -e "${Info} Log目录已存在，跳过创建"
+  else
    mkdir -p ${log_file}
    chmod +x ${log_file}
-   echo ${Info} 已创建Log打印目录
+   echo -e "${Info} 已创建Log打印目录"
+  fi
 }
 
 # 下载进程守护脚本
