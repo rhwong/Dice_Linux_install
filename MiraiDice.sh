@@ -142,13 +142,14 @@ Service_Mirai_AutoRestart() {
     if [[ ${yn} == [Nn] ]]; then
       echo && echo "已取消..." && exit 1
     fi
+     fi
     check_autorestart_pid
     [[ -n ${A_PID} ]] && kill -9 ${A_PID}
     mkdir_Mirai_log_File
     wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService.sh" -O ${AutoShell_file}; 
     chmod +x ${AutoShell_file}
     echo -e "${Info} Mirai-Dice 守护脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能被强行停止。)"
-  fi
+
 }
 
 # 升级脚本
