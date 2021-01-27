@@ -91,9 +91,9 @@ do_stopauto(){
 		kill -9 "${A_PID}"
 		sleep 2s
 		if check_running_Autorestart; then
-			echo -e "${Info_font_prefix}[信息]${Font_suffix} 守护进程 关闭失败 !"
+			echo -e "${Info_font_prefix}[错误]${Font_suffix} 守护进程 关闭失败 !"
 		else
-			echo -e "${Error_font_prefix}[错误]${Font_suffix} 守护进程 关闭成功 !"
+			echo -e "${Error_font_prefix}[信息]${Font_suffix} 守护进程 关闭成功 !"
 		fi
 	fi
 }
