@@ -5,16 +5,18 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Mirai with Dice Quick install
-#	Version: v1.0.5
+#	Version: v1.0.7
 #	Author: Linux Dice by w4123,bash by rhwong
 # Thanks: Part of This script copied from Toyo 
 #=================================================
 
-sh_ver="1.0.5"
+sh_ver="1.0.7"
 file="/usr/local/MiraiDice2"
 config_file="${file}/config/Console/AutoLogin.yml"
 device_file="${file}/device.json"
 DiceAPP_file="${file}/data/MiraiNative/plugins"
+AutoShell_file="${file}/RestartService_b.sh"
+log_file="/tmp/Mriai-b"
 
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
@@ -121,9 +123,19 @@ Service_Mirai_Dice_bash() {
   echo -e "${Info} Mirai-Dice 分身管理脚本下载完成 !"
 }
 
+# 创建log目录
+mkdir_Mirai_log_File() {
+   if [[ -e ${AutoShell_file} ]]; then
+   echo ${Info} Log目录已存在，跳过创建
+   fi
+   mkdir -p ${log_file}
+   chmod +x ${log_file}
+   echo ${Info} 已创建Log打印目录
+}
+
 # 下载进程守护脚本
 Service_Mirai_AutoRestart() {
-  if [[ -e ${file}/RestartService_b.sh ]]; then
+  if [[ -e ${AutoShell_file} ]]; then
     echo && echo -e "${Error_font_prefix}[信息]${Font_suffix} 检测到 进程守护脚本 已存在，是否继续(覆盖安装)？[y/N]"
     read -rep "(默认: n):" yn
     [[ -z ${yn} ]] && yn="n"
@@ -132,12 +144,12 @@ Service_Mirai_AutoRestart() {
     fi
     check_autorestart_pid
     [[ -n ${A_PID} ]] && kill -9 ${A_PID}
-    wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService_b.sh" -O ${file}/RestartService_b.sh; 
-    chmod +x ${file}/RestartService_b.sh
+    wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService_b.sh" -O ${AutoShell_file}; 
+    chmod +x ${AutoShell_file}
     echo -e "${Info} Mirai-Dice 管理脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能出现不可预料的错误。)"
   fi
-    wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService_b.sh" -O ${file}/RestartService.sh; 
-    chmod +x ${file}/RestartService.sh
+    wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService_b.sh" -O ${AutoShell_file}; 
+    chmod +x ${AutoShell_file}
     echo -e "${Info} Mirai-Dice 管理脚本下载完成 !"
 }
 
@@ -307,6 +319,7 @@ install_Dice() {
   # 调用下载
   Download_Dice
   Service_Mirai_Dice_bash
+  Service_Mirai_AutoRestart
   # 配置账号
   Reset_QQ_config
   echo && echo -e " ${Info_font_prefix}[信息]${Font_suffix} Dice 安装完成！请自行将device.json上传到/usr/local/MiraiDice2才可免验证登录！" && echo
@@ -318,15 +331,31 @@ menu_status(){
 	if [[ -e ${file} ]]; then
 		check_pid
 		if [[ ! -z "${PID}" ]]; then
-			echo -e " 当前状态: ${Green_font_prefix}已安装${Font_color_suffix} 并 ${Green_font_prefix}已启动${Font_color_suffix}"
+			echo -e " Dice状态: ${Green_font_prefix}已安装${Font_color_suffix} 并 ${Green_font_prefix}已启动${Font_color_suffix}"
 		else
-			echo -e " 当前状态: ${Green_font_prefix}已安装${Font_color_suffix} 但 ${Red_font_prefix}未启动${Font_color_suffix}"
+			echo -e " Dice状态: ${Green_font_prefix}已安装${Font_color_suffix} 但 ${Red_font_prefix}未启动${Font_color_suffix}"
 		fi
 		cd "${file}"
 	else
-		echo -e " 当前状态: ${Red_font_prefix}未安装${Font_color_suffix}"
+		echo -e " Dice状态: ${Red_font_prefix}未安装${Font_color_suffix}"
 	fi
 }
+
+# 显示 守护状态
+auto_status(){
+	if [[ -e ${AutoShell_file} ]]; then
+		check_autorestart_pid
+		if [[ ! -z "${A_PID}" ]]; then
+			echo -e " 守护状态: ${Green_font_prefix}已安装${Font_color_suffix} 并 ${Green_font_prefix}已启动${Font_color_suffix}"
+		else
+			echo -e " 守护状态: ${Green_font_prefix}已安装${Font_color_suffix} 但 ${Red_font_prefix}未启动${Font_color_suffix}"
+		fi
+		cd "${file}"
+	else
+		echo -e " 守护状态: ${Red_font_prefix}未安装${Font_color_suffix}"
+	fi
+}
+
 check_sys
 [[ ${release} != "debian" ]] && [[ ${release} != "ubuntu" ]] && [[ ${release} != "centos" ]] && echo -e "${Error} 本脚本不支持当前系统 ${release} !" && exit 1
 action=$1
