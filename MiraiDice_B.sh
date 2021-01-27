@@ -384,6 +384,7 @@ else
  ${Green_font_prefix} 9.${Font_color_suffix} 设置 登录信息
  "
 	menu_status
+  auto_status
 	echo && read -e -p "请输入数字 [0-6]：" num
 case "$num" in
   0)
