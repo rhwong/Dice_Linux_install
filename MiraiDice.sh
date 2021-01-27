@@ -16,7 +16,7 @@ config_file="${file}/config/Console/AutoLogin.yml"
 device_file="${file}/device.json"
 DiceAPP_file="${file}/data/MiraiNative/plugins"
 AutoShell_file="${file}/RestartService.sh"
-log_file="/tmp/Mriai"
+log_file="/tmp/Mirai"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[信息]${Font_color_suffix}"
