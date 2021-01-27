@@ -148,12 +148,9 @@ Service_Mirai_AutoRestart() {
     mkdir_Mirai_log_File
     wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService_b.sh" -O ${AutoShell_file}; 
     chmod +x ${AutoShell_file}
-    echo -e "${Info} Mirai-Dice 管理脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能出现不可预料的错误。)"
+    echo -e "${Info} Mirai-Dice 守护脚本下载完成 ! (注意：因为更新方式是直接覆盖，如果守护正在运行可能被强行停止。)"
   fi
-    mkdir_Mirai_log_File
-    wget --no-check-certificate "https://raw.githubusercontent.com/rhwong/Dice_Linux_install/master/AutoRestart/RestartService_b.sh" -O ${AutoShell_file}; 
-    chmod +x ${AutoShell_file}
-    echo -e "${Info} Mirai-Dice 管理脚本下载完成 !"
+
 }
 
 # 升级脚本
