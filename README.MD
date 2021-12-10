@@ -2,6 +2,8 @@
 
 [Dice](https://github.com/Dice-Developer-Team/Dice) For Linux 快速安装脚本
 
+本仓库已过时，请直接参考官方论坛https://forum.kokona.tech/
+
 ## 简介
 
 本脚本用于在 **CentOS/Debian/Ubuntu** 系统环境下快速部署[Mirai](https://github.com/project-mirai) with [Dice](https://github.com/Dice-Developer-Team)一键包 _(暂时只测试了 CentOs/Ubuntu)_
